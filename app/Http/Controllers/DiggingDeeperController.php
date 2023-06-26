@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
-use Carbon\Carbon;
 use App\Jobs\ProcessVideoJob;
 use App\Jobs\GenerateCatalog\GenerateCatalogMainJob;
+use App\Models\BlogPost;
+use Carbon\Carbon;
+
 class DiggingDeeperController extends Controller
 {
     public function processVideo()
@@ -17,11 +18,11 @@ class DiggingDeeperController extends Controller
         //->onQueue('name_of_queue')
     }
 
-/*
-* @link http://blog.com/digging_deeper/prepare-catalog
-*
-* php artisan queue:listen --queue=generate-catalog --tries=3 --delay=10
-*/
+    /**
+     * @link http://blog.com/digging_deeper/prepare-catalog
+     *
+     * php artisan queue:listen --queue=generate-catalog --tries=3 --delay=10
+     */
     public function prepareCatalog()
     {
         GenerateCatalogMainJob::dispatch();
