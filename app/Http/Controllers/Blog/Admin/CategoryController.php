@@ -22,6 +22,7 @@ class CategoryController extends BaseController
         parent::__construct();
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -51,7 +52,7 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BlogCategoryCreateRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(BlogCategoryCreateRequest $request)
@@ -79,7 +80,7 @@ class CategoryController extends BaseController
      */
     public function show($id)
     {
-        dd(__METHOD__);
+        //dd(__METHOD__);
     }
 
     /**
@@ -102,13 +103,13 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param BlogCategoryUpdateRequest $request
+     * @param int $id
+     * @return Response
      */
     public function update(BlogCategoryUpdateRequest $request, $id)
     {
-        $this->blogCategoryRepository->getEdit($id);
+        $item = $this->blogCategoryRepository->getEdit($id);;
         if (empty($item)) { //якщо ід не знайдено
             return back() //redirect back
             ->withErrors(['msg' => "Запис id=[{$id}] не знайдено"]) //видати помилку
@@ -138,7 +139,7 @@ class CategoryController extends BaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        //dd(__METHOD__);
     }
 
 }
